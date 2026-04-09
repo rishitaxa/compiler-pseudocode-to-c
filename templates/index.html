@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Compiler Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-title">Compiler Visualizer</div>
+        <div class="brand-subtitle">Pseudocode → C with front-end & back-end phases</div>
+      </div>
+      <div class="actions">
+        <button id="compileBtn" class="primary">Compile</button>
+        <button id="loadExampleBtn" class="ghost">Load example</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panes">
+        <div class="pane">
+          <div class="pane-header">
+            <div class="pane-title">Pseudocode (input)</div>
+            <div class="pane-hint">One statement per line. Supported: assignment, arithmetic, <code>print</code>.</div>
+          </div>
+          <textarea id="pseudocode" spellcheck="false" class="editor" placeholder="a = 5&#10;b = 10&#10;c = a + b&#10;print c"></textarea>
+        </div>
+
+        <div class="pane">
+          <div class="pane-header">
+            <div class="pane-title">Generated C (output)</div>
+            <div class="pane-hint">Updates after compilation.</div>
+          </div>
+          <pre id="cOutput" class="code"></pre>
+        </div>
+      </section>
+
+      <section class="phases">
+        <div class="phases-header">
+          <div class="phases-title">Compiler phases (step-by-step)</div>
+          <div id="status" class="status">Ready.</div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Compiler phases">
+          <button class="tab active" data-tab="tokens" role="tab">Lexical (Tokens)</button>
+          <button class="tab" data-tab="ast" role="tab">Syntax (AST)</button>
+          <button class="tab" data-tab="semantic" role="tab">Semantic</button>
+          <button class="tab" data-tab="ir" role="tab">Intermediate (TAC)</button>
+          <button class="tab" data-tab="pipeline" role="tab">Pipeline</button>
+        </div>
+
+        <div class="tabpanels">
+          <div class="tabpanel active" id="tab-tokens" role="tabpanel">
+            <div class="panel-grid">
+              <div class="panel">
+                <div class="panel-title">Tokens</div>
+                <div id="tokensTable" class="mono small"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="tab-ast" role="tabpanel">
+            <div class="panel-grid">
+              <div class="panel">
+                <div class="panel-title">Syntax Tree (AST)</div>
+                <pre id="astView" class="code small"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="tab-semantic" role="tabpanel">
+            <div class="panel-grid two">
+              <div class="panel">
+                <div class="panel-title">Symbol Table</div>
+                <pre id="symbolsView" class="code small"></pre>
+              </div>
+              <div class="panel">
+                <div class="panel-title">Diagnostics</div>
+                <pre id="diagnosticsView" class="code small"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="tab-ir" role="tabpanel">
+            <div class="panel-grid two">
+              <div class="panel">
+                <div class="panel-title">Three-Address Code (TAC)</div>
+                <pre id="tacView" class="code small"></pre>
+              </div>
+              <div class="panel">
+                <div class="panel-title">Structured IR</div>
+                <pre id="irView" class="code small"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabpanel" id="tab-pipeline" role="tabpanel">
+            <div class="panel-grid">
+              <div class="panel">
+                <div class="panel-title">Instruction pipeline (IF → ID → EX → MEM → WB)</div>
+                <div id="pipelineView" class="mono small"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
+
