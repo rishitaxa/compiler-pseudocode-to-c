@@ -1,0 +1,65 @@
+declare stack myStack
+push 10 into myStack
+push 20 into myStack
+print myStack
+pop from myStack
+print myStack
+
+
+count = 0
+while count < 5
+    print count
+    count = count + 1
+end
+
+a = 10
+b = 20
+sum = a + b
+print sum
+
+
+
+age = 25
+if age >= 18
+    print "Adult"
+end
+
+
+score = 45
+if score >= 50
+    print "Pass"
+else
+    print "Fail"
+end
+
+count = 0
+while count < 5
+    print count
+    count = count + 1
+end
+
+declare queue myQueue
+enqueue 5 into myQueue
+enqueue 10 into myQueue
+dequeue from myQueue
+print myQueue
+
+
+
+function add(x, y)
+    return x + y
+end
+
+
+
+x = 15
+if x > 5
+    if x < 25
+        print "Valid range"
+    end
+end
+
+num = input
+doubled = num * 2
+print doubled
+
